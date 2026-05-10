@@ -126,7 +126,7 @@ const SCENARIOS=[
 ];
 const AI_URL=typeof window!=="undefined"&&!window.location.hostname.includes("claude.ai")?"/.netlify/functions/ai-proxy":"https://api.anthropic.com/v1/messages";
 async function callAI(messages,sys){
-  const r=await fetch(AI_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-3-5-sonnet-20241022",max_tokens:1000,system:sys||"You are a senior SOC analyst. Be concise, technical, and actionable.",messages})});
+  const r=await fetch(AI_URL,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({model:"claude-haiku-4-5-20251001",max_tokens:1000,system:sys||"You are a senior SOC analyst. Be concise, technical, and actionable.",messages})});
   if(!r.ok)throw new Error(`HTTP ${r.status}`);
   const d=await r.json();
   return d.content?.find(b=>b.type==="text")?.text||"";
